@@ -142,8 +142,12 @@ export function init(
 
   function clearBuildErrors() {
     // Clean up outdated compile errors
-    if (console.clear && hasBuildErrors) {
-      console.clear();
+    if (hasBuildErrors) {
+      if (console.clear) {
+        console.clear();
+      }
+      // The hash handler keeps the overlay when the hash matches the page's hash.
+      clearOverlay?.();
     }
     hasBuildErrors = false;
   }
